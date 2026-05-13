@@ -1,0 +1,19 @@
+import torch
+
+some_tensor = torch.rand(3, 4)
+print(some_tensor)
+
+print(f"Datatype of tensor: {some_tensor.dtype}")
+print(f"Shape of tensor: {some_tensor.shape}")
+print(f"Device tensor is on: {some_tensor.device}")
+
+
+tensor = torch.tensor([1, 2, 3])
+print(tensor)
+print(tensor * 10)
+print(tensor * tensor)
+print(torch.matmul(tensor, tensor))
+
+res = torch.matmul(torch.rand(10, 10), torch.rand(10, 10))
+print(res)
+print(res.shape)
