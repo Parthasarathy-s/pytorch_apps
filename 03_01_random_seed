@@ -1,0 +1,11 @@
+import torch
+
+torch.random.manual_seed(42)
+tensor_A = torch.rand(3, 3)
+print(tensor_A)
+
+torch.random.manual_seed(42)
+tensor_B = torch.rand(3, 3)
+print(tensor_B)
+
+print(tensor_A == tensor_B)
