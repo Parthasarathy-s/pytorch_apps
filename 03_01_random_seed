@@ -9,3 +9,13 @@ tensor_B = torch.rand(3, 3)
 print(tensor_B)
 
 print(tensor_A == tensor_B)
+
+torch.random.manual_seed(40)
+tensor_A = torch.rand(3, 2)
+print(tensor_A)
+
+torch.random.manual_seed(40)
+tensor_B = torch.rand(3, 2)
+print(tensor_B)
+
+print(tensor_A == tensor_B)
