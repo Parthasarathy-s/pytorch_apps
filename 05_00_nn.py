@@ -1,4 +1,6 @@
+from numpy import gradient
 import torch
+from torch import nn
 import matplotlib.pyplot as plt
 
 weight = 0.7
@@ -9,16 +11,13 @@ end = 1
 step = 0.02
 
 X = torch.arange(start, end, step).unsqueeze(dim=1)
-
 Y = weight * X + bias
 
 
 train_split = int(len(X) * 0.8)
-
 X_train, y_train = X[:train_split], Y[:train_split]
 X_test, y_test = X[train_split:], Y[train_split:]
-
-print(len(X_train), len(y_train), len(X_test), len(y_test))
+print('----> ', len(X_train), len(y_train), len(X_test), len(y_test))
 
 def plot_predictions(train_data = X_train , 
                      train_label = y_train, 
@@ -38,3 +37,27 @@ def plot_predictions(train_data = X_train ,
     plt.show()
 
 plot_predictions()
+
+
+class LinearRegression(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.weight = nn.Parameter(torch.rand(1, requires_grad=True, dtype=torch.float))
+        self.bias = nn.Parameter(torch.rand(1, requires_grad=True, dtype=torch.float))
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.weight * x + self.bias
+    
+
+torch.manual_seed(42)
+model_0 = LinearRegression()
+
+# print(model_0)
+# print(model_0.parameters())
+# print(list(model_0.parameters()))
+
+with torch.inference_mode():
+    pred_y = model_0(X_test)
+
+print(pred_y)
+plot_predictions(predictions=pred_y)
