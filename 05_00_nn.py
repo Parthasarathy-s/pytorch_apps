@@ -61,3 +61,13 @@ with torch.inference_mode():
 
 print(pred_y)
 plot_predictions(predictions=pred_y)
+
+loss_fn = torch.nn.L1Loss()
+optimizer = torch.optim.SGD(params=model_0.parameters(), lr = 0.01)
+
+l1loss = nn.L1Loss()
+
+print(l1loss)
+
+optimizer = torch.optim.SGD(params=model_0.parameters(), lr = 0.01)
+print(optimizer)
