@@ -1,5 +1,3 @@
-from cProfile import label
-
 from torch import nn
 import torch
 from numpy import gradient
@@ -37,7 +35,8 @@ def plot_prediction(train_data = x_train,
     if predictions is not None:
         plt.scatter(test_data, predictions, c = "r", s = 4, label = "Predictions")
 
-    plt.legend(prep={"size": 14})
+    plt.legend(prop = {"size": 14})
     plt.show()
 
 plot_prediction()
+
