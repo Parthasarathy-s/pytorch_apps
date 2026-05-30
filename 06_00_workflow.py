@@ -1,5 +1,3 @@
-from xml.parsers.expat import model
-
 from torch import nn
 import torch
 from numpy import gradient
