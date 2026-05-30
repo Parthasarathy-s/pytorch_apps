@@ -1,3 +1,5 @@
+from xml.parsers.expat import model
+
 from torch import nn
 import torch
 from numpy import gradient
@@ -40,3 +42,39 @@ def plot_prediction(train_data = x_train,
 
 plot_prediction()
 
+class LinearRegression(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.weight=nn.Parameter(torch.rand(1, requires_grad=True, dtype=torch.float))
+        self.bias=nn.Parameter(torch.rand(1, requires_grad=True, dtype=torch.float))
+    
+    def forward(self, x:torch.Tensor) -> torch.Tensor:
+        return self.weight * x + self.bias
+
+torch.manual_seed(42)
+model_0 = LinearRegression()
+
+with torch.inference_mode():
+    pred_y = model_0(x_test)
+
+print(pred_y)
+plot_prediction(predictions=pred_y)
+
+loss_fn = nn.L1Loss()
+optimizer = torch.optim.SGD(params=model_0.parameters(), lr = 0.01)
+
+torch.manual_seed(42)
+epochs = 100
+
+for epoch in range(epochs):
+    model_0.train()
+    y_pred = model_0(x_train)
+    loss = loss_fn(y_pred, y_train)
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+    model_0.eval()
+
+    print(model_0.state_dict())
+    
