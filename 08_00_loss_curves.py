@@ -1,6 +1,4 @@
-from cProfile import label
 import numpy as np
-import test
 from torch import nn
 import torch
 from numpy import gradient
@@ -103,4 +101,12 @@ plt.legend()
 plt.show()
 
 
-    
+from pathlib import Path
+
+MODEL_PATH = Path('models')
+MODEL_PATH.mkdir(parents=True, exist_ok=True)
+
+MODEL_NAME = "1__00_workflow_model_0.pth"
+MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
+
+torch.save(obj = model_0.state_dict(), f=MODEL_SAVE_PATH)
