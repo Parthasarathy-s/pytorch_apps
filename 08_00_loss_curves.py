@@ -110,3 +110,7 @@ MODEL_NAME = "1__00_workflow_model_0.pth"
 MODEL_SAVE_PATH = MODEL_PATH / MODEL_NAME
 
 torch.save(obj = model_0.state_dict(), f=MODEL_SAVE_PATH)
+
+res = torch.load(f = MODEL_SAVE_PATH)
+
+print(f"Output {res}")
