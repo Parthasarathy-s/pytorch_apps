@@ -12,7 +12,7 @@ model = nn.Linear(1, 1)
 # 2. Loss function
 criterion = nn.BCEWithLogitsLoss()
 
-# 3. Gradient descent optimizer
+# 3. Gradient descent optimizer - Stochastic Gradient Descent.
 optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 
 # 4. Training loop
