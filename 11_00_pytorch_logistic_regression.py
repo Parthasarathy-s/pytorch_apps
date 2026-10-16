@@ -28,3 +28,12 @@ for epoch in range(1000):
 with torch.no_grad():
     probabilities = torch.sigmoid(model(X))
     print(probabilities)
+
+"""
+Hours studied (X) | Probability of passing | Prediction (threshold = 0.5)
+1 | 3.47% | Fail (0)
+2 | 28.32% | Fail (0)
+3 | 81.28% | Pass (1)
+4 | 97.95% | Pass (1)
+
+"""
